@@ -7,3 +7,5 @@
 文件夹    | 服务器名称
 ------------ | -------------
 fileserver | [Static File Server](./fileserver/main.go)
+markdowngenerator | [Markdown Generator Server](./markdowngenerator/main.go)
+

@@ -1,0 +1,25 @@
+<html>
+  <head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-title">
+        <h1>Markdown Generator</h1>
+        <p class="lead">Generate your markdown with Go</p>
+        <hr />
+      </div>
+
+      <form action="/markdown" method="POST">
+        <div class="form-group">
+          <textarea class="form-control" name="body" cols="30" rows="10"></textarea>
+        </div>
+		<div class="form-group">
+          <input type="submit" class="btn btn-primary pull-right" />
+        </div>
+      </form>
+    </div>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
