@@ -8,4 +8,4 @@
 ------------ | -------------
 fileserver | [Static File Server](./fileserver/main.go)
 markdowngenerator | [Markdown Generator Server](./markdowngenerator/main.go)
-
+timeserver | [Time Server](./timeserver/main.go)
