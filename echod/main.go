@@ -10,6 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+	"strings"
 )
 
 func main() {
@@ -48,11 +49,11 @@ func AcceptAndHandleConn(ctx context.Context, listener net.Listener) {
 }
 
 func HandleConn(ctx context.Context, c net.Conn) {
-	defer c.Close()
 	deadline := time.Now().Add(3 * time.Minute)
 	err := c.SetReadDeadline(deadline)
 	if err != nil {
 		log.Println("Set ",c,err)
+		c.Close()
 	}
 	log.Println(c.RemoteAddr())
 	input := bufio.NewScanner(c)
@@ -60,16 +61,20 @@ func HandleConn(ctx context.Context, c net.Conn) {
 		select {
 		case <-ctx.Done():
 			c.Close()
-			break
+			return
 		default:
 		}
-		echo(c, input.Text(), 1*time.Second)
+		go echo(c, input.Text(), 1*time.Second) // 多个 goroutine 处理一个连接
 	}
+	c.Close()
 }
 
 func echo(c net.Conn, shout string, delay time.Duration) {
+	fmt.Fprintln(c, "\t", strings.ToUpper(shout))
 	time.Sleep(delay)
 	fmt.Fprintln(c, "\t", shout)
+	time.Sleep(delay)
+	fmt.Fprintln(c, "\t", strings.ToLower(shout))
 }
 
 func WaitForInterrupt(release func()) {
