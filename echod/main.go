@@ -64,7 +64,7 @@ func HandleConn(ctx context.Context, c net.Conn) {
 			return
 		default:
 		}
-		go echo(c, input.Text(), 1*time.Second) // 多个 goroutine 处理一个连接
+		go echo(c, input.Text(), 1*time.Second) // 多个 goroutine 处理一个连接, 并发调用net.Conn的方法是安全的,但其他类型不一定是并发安全的
 	}
 	c.Close()
 }
