@@ -31,7 +31,7 @@ func main() {
 		log.Println("This is a TCP connect, close write")
 		// client 主动关闭发送连接
 		// client ---关闭--> server
-		// 		  <--打开--
+		//        <--打开--
 		tcpcoon.CloseWrite()
 	} else {
 		// clinet ---关闭---> server
